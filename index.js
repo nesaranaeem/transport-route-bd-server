@@ -5,7 +5,8 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const dhakaBusRouteSchema = require("./schemas/dhakaBusRouteSchema");
 const DhakaBusRoute = require("./models/DhakaBusRoute");
-
+// Port
+const port = process.env.PORT || 5000;
 // Load environment variables
 dotenv.config();
 
@@ -14,7 +15,7 @@ const app = express();
 //MiddleWares
 app.use(express.json());
 app.use(cors());
-//routes
+// Routes
 const dhakaCityBusRoute = require("./routes/dhakaBusRoute.route");
 // Connect to MongoDB database
 mongoose
@@ -35,6 +36,6 @@ DhakaBusRoute;
 app.use("/api/v1/bus", dhakaCityBusRoute);
 
 // Start server
-app.listen(process.env.PORT, () => {
-  console.log(`Server started on port ${process.env.PORT}`);
+app.listen(port, () => {
+  console.log(`Server started on port ${port}`);
 });
