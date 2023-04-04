@@ -40,6 +40,16 @@ const getDhakaCityBusRoute = async (req, res) => {
     current_page: page,
   });
 };
+
+const getAllDhakaCityBusRoutes = async (req, res) => {
+  try {
+    const allRoutes = await DhakaBusRoute.distinct("routes");
+    res.json(allRoutes);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
 module.exports = {
   getDhakaCityBusRoute,
+  getAllDhakaCityBusRoutes,
 };
