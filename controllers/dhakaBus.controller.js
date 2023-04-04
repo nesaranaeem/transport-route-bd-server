@@ -44,7 +44,8 @@ const getDhakaCityBusRoute = async (req, res) => {
 const getAllDhakaCityBusRoutes = async (req, res) => {
   try {
     const allRoutes = await DhakaBusRoute.distinct("routes");
-    res.json(allRoutes);
+    const formattedRoutes = allRoutes.map((route) => ({ routeName: route }));
+    res.json(formattedRoutes);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
