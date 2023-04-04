@@ -33,7 +33,7 @@ const getDhakaCityBusRoute = async (req, res) => {
 
   // Send response with bus routes, total count, total pages, and current page
   res.json({
-    status: "success",
+    status: true,
     data: dhakaBusRoutes,
     total_count: totalCount,
     total_pages: totalPages,
