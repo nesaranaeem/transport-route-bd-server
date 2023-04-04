@@ -32,6 +32,11 @@ dhakaBusRouteSchema;
 // Define bus route model
 DhakaBusRoute;
 
+// Route for index
+app.get("/", (req, res) => {
+  res.send("Server is running");
+});
+
 // Define endpoint for getting all bus routes
 app.use("/api/v1/bus", dhakaCityBusRoute);
 
