@@ -20,6 +20,7 @@ const getDhakaCityBusRoute = async (req, res) => {
   } else if (to) {
     filter.routes = to;
   }
+
   // Get total count of bus routes
   const totalCount = await DhakaBusRoute.countDocuments(filter);
 
@@ -44,8 +45,14 @@ const getDhakaCityBusRoute = async (req, res) => {
 const getAllDhakaCityBusRoutes = async (req, res) => {
   try {
     const allRoutes = await DhakaBusRoute.distinct("routes");
+
     const formattedRoutes = allRoutes.map((route) => ({ routeName: route }));
-    res.json(formattedRoutes);
+    const totalRoutes = allRoutes.length;
+    res.json({
+      status: true,
+      routeList: formattedRoutes,
+      total_count: totalRoutes,
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
