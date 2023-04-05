@@ -5,13 +5,14 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const dhakaBusRouteSchema = require("./schemas/dhakaBusRouteSchema");
 const DhakaBusRoute = require("./models/DhakaBusRoute");
+// Create Express app
+const app = express();
+
 // Port
 const port = process.env.PORT || 5000;
 // Load environment variables
 dotenv.config();
 
-// Create Express app
-const app = express();
 //MiddleWares
 app.use(express.json());
 app.use(cors());
