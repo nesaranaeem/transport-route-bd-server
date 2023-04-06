@@ -1,4 +1,12 @@
 const whiteListedDomain = (req, res, next) => {
+  const apiKey = req.query.apikey;
+
+  // check if the request includes the api key
+  if (apiKey === process.env.API_KEY) {
+    next();
+    return;
+  }
+
   const allowedDomains = [
     "https://transport-route-bd-client.vercel.app",
     "http://transport-route-bd-client.vercel.app",

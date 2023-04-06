@@ -9,4 +9,5 @@ router.get(
   whiteListedDomain,
   dhakaCityBusController.getAllDhakaCityBusRoutes
 );
+
 module.exports = router;
