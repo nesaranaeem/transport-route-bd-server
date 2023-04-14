@@ -18,6 +18,7 @@ app.use(express.json());
 app.use(cors());
 // Routes
 const dhakaCityBusRoute = require("./routes/dhakaBusRoute.route");
+const versionRoute = require("./routes/versions.route");
 // Connect to MongoDB database
 mongoose
   .connect(process.env.DB_CONNECT, {
@@ -40,6 +41,7 @@ app.get("/", (req, res) => {
 
 // Define endpoint for getting all bus routes
 app.use("/api/v1/bus", dhakaCityBusRoute);
+app.use("/api/v1/version", versionRoute);
 
 // Start server
 app.listen(port, () => {
