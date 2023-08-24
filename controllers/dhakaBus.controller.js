@@ -14,11 +14,11 @@ const getDhakaCityBusRoute = async (req, res) => {
   // Create filter object based on from and to parameters
   const filter = {};
   if (from && to) {
-    filter.routes = { $all: [from.toLowerCase(), to.toLowerCase()] };
+    filter.routes = { $all: [new RegExp(from, "i"), new RegExp(to, "i")] };
   } else if (from) {
-    filter.routes = from.toLowerCase();
+    filter.routes = new RegExp(from, "i");
   } else if (to) {
-    filter.routes = to.toLowerCase();
+    filter.routes = new RegExp(to, "i");
   }
 
   // Get total count of bus routes
