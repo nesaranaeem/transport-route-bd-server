@@ -14,11 +14,11 @@ const getDhakaCityBusRoute = async (req, res) => {
   // Create filter object based on from and to parameters
   const filter = {};
   if (from && to) {
-    filter.routes = { $all: [from, to] };
+    filter.routes = { $all: [from.toLowerCase(), to.toLowerCase()] };
   } else if (from) {
-    filter.routes = from;
+    filter.routes = from.toLowerCase();
   } else if (to) {
-    filter.routes = to;
+    filter.routes = to.toLowerCase();
   }
 
   // Get total count of bus routes
@@ -46,7 +46,7 @@ const getAllDhakaCityBusRoutes = async (req, res) => {
   try {
     const allRoutes = await DhakaBusRoute.distinct("routes");
 
-    const formattedRoutes = allRoutes.map((route) => ({ routeName: route }));
+    const formattedRoutes = allRoutes.map((route) => ({ routeName: route.toLowerCase() }));
     const totalRoutes = allRoutes.length;
     res.json({
       status: true,
@@ -57,6 +57,7 @@ const getAllDhakaCityBusRoutes = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
 module.exports = {
   getDhakaCityBusRoute,
   getAllDhakaCityBusRoutes,
